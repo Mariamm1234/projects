@@ -8,110 +8,159 @@ struct account {
 	char type;
 	double initialamount;
 };
-void new_account(account a[]) {
+int test(account v[], int n, int l)
+{
+	for (int i = 0; i <= n; i++)
+	{
+		if (l != v[i].num||n==1)
+			return i;
+		else
+			return -1;
+}
+}
+int choose(account r[],int p,int w)
+{
+	for (int i = 0; i < p; i++)
+	{
+		if (w == r[i].num )
+			return i;
+		else
+			return -1;
+	}
+}
+void new_account(account a[],int u) {
 	cout << "  " << "ENTER THE ACCOUNT NO. :";
-	cin >> a[i].num;
-	cout << endl << "  " << "ENTER THE NAME OF ACCOUNT HOLDER :";
-	getline(cin, a[i].name);
-	getline(cin, a[i].name);
-	cout << endl << "  " << "ENTER TYPE OF THE ACCOUNT(C/S) : ";
-	cin >> a[i].type;
-	cout << endl << "  " << "ENTER THE INITIALAMOUNT(>=500FOR SAVING>=1000FOR CURRENT) :";
-	cin >> a[i].initialamount;
-	cout << endl << "  " << "ACCOUNT CREATED" << endl;
-	i++;
-	system("pause");
+	int d;
+	cin >> d;
+	a[i].num = d;
+	int c=test(a,u,d);
+	if (c>=0)
+	{
+		if (a[i].num > 0)
+		{
+			cout << endl << "  " << "ENTER THE NAME OF ACCOUNT HOLDER :";
+			getline(cin, a[i].name);
+			getline(cin, a[i].name);
+			cout << endl << "  " << "ENTER TYPE OF THE ACCOUNT(C/S) : ";
+			cin >> a[i].type;
+			cout << endl << "  " << "ENTER THE INITIALAMOUNT(>=500FOR SAVING>=1000FOR CURRENT) :";
+			cin >> a[i].initialamount;
+			if ((a[i].type == 'c'&&a[i].initialamount >= 500) || (a[i].type == 's'&&a[i].initialamount >= 1000))
+				
+			{
+					cout << endl << "  " << "ACCOUNT CREATED" << endl;
+					i++;
+					system("pause");
+			}
+			else {
+				cout << "            " << "SORRY ,YOUR INPUT IS NOT VALID...." << endl << "\n";
+				system("pause");
+			}
+		}
+		else {
+			cout << "            " << "SORRY ,YOUR INPUT IS NOT VALID...." << endl;
+			system("pause");
+		}
+	}
+	else {
+		cout << "            " << "SORRY ,YOUR INPUT IS NOT VALID...." << endl;
+		system("pause");
+	}
+
+	
 }
-void deposit_amount(account a[],int h)
+void deposit_amount(account a[], int h)
 {
 	int g;
 	int y = 0;
 	cout << "ENTER YOUR ACCOUNT NO. : ";
 	cin >> g;
-	for (int i = 0; i < h; i++)
+	int c = choose(a, h, g);
+	if (c >= 0)
 	{
-		if (g == a[i].num)
+		cout << endl << "       " << "TO DEPOSIT AMOUNT" << endl;
+		cout << "  " << "THE ACCOUNT NO. : " << a[c].num << endl;
+		cout << "  " << "THE NAME OF ACCOUNT HOLDER :" << a[c].name << endl;
+		cout << "  " << "TYPE OF THE ACCOUNT(C/S) : " << a[c].type << endl;
+		cout << "  " << "THE INITIALAMOUNT(>=500FOR SAVING>=1000FOR CURRENT) : " << a[c].initialamount << endl;
+		double m;
+		cout << "  " << "ENTER THE AMMOUNT YOU WANT TO PUT : ";
+		cin >> m;
+		if (m >= 0)
 		{
-			cout << endl << "       " << "TO DEPOSIT AMOUNT" << endl;
-			cout << "  " << "THE ACCOUNT NO. : " << a[i].num << endl;
-			cout << "  " << "THE NAME OF ACCOUNT HOLDER :" << a[i].name << endl;
-			cout << "  " << "TYPE OF THE ACCOUNT(C/S) : " << a[i].type << endl;
-			cout << "  " << "THE INITIALAMOUNT(>=500FOR SAVING>=1000FOR CURRENT) : " << a[i].initialamount << endl;
-			double m;
-			cout << "  " << "ENTER THE AMMOUNT YOU WANT TO PUT : ";
-			cin >> m;
-			a[i].initialamount += m;
+			a[c].initialamount += m;
 			cout << endl << "  " << "YOUR CHANGES ARE SAVED NOW..." << endl;
 			system("pause");
 		}
-		else if (g != a[i].num)
-			y++;
+		else {
+			cout << "            " << "SORRY ,YOUR INPUT IS NOT VALID...." << endl;
+			system("pause");
+		}
 	}
-	if (y==h)
+	else
 	{
-		cout << "             " << "SORRY SOMETHING WENT WRONG,PLEASE TRY AGAIN...." << endl;
+		cout << "            " << " YOUR ACCOUNT IS NOT CREATED YET,PLEASE CREATE ONE...." << endl;
 		system("pause");
 	}
 }
-void withdraw_amount(account a[],int h)
+void withdraw_amount(account a[], int h)
 {
 	int g;
 	int y = 0;
 	cout << "ENTER YOUR ACCOUNT NO. : ";
 	cin >> g;
-	for (int i = 0; i < h; i++)
-	{
-		if (g == a[i].num)
+	int c = choose(a, h, g);
+	if (c >= 0) {
+		cout << endl << "       " << "TO WITHDRAW AMOUNT" << endl;
+		cout << "  " << "THE ACCOUNT NO. : " << a[c].num << endl;
+		cout << "  " << "THE NAME OF ACCOUNT HOLDER :" << a[c].name << endl;
+		cout << "  " << "TYPE OF THE ACCOUNT(C/S) : " << a[c].type << endl;
+		cout << "  " << "THE INITIALAMOUNT(>=500FOR SAVING>=1000FOR CURRENT) : " << a[c].initialamount << endl;
+		double m;
+		cout << "  " << "ENTER THE AMMOUNT YOU WANT TO WITHDRAW : ";
+		cin >> m;
+		if (m >= 0 && m <= a[c].initialamount)
 		{
-			cout << endl << "       " << "TO WITHDRAW AMOUNT" << endl;
-			cout << "  " << "THE ACCOUNT NO. : " << a[i].num << endl;
-			cout << "  " << "THE NAME OF ACCOUNT HOLDER :" << a[i].name << endl;
-			cout << "  " << "TYPE OF THE ACCOUNT(C/S) : " << a[i].type << endl;
-			cout << "  " << "THE INITIALAMOUNT(>=500FOR SAVING>=1000FOR CURRENT) : " << a[i].initialamount << endl;
-			double m;
-			cout << "  " << "ENTER THE AMMOUNT YOU WANT TO WITHDRAW : ";
-			cin >> m;
-			a[i].initialamount -= m;
+			a[c].initialamount -= m;
 			cout << endl << "  " << "YOUR CHANGES ARE SAVED NOW..." << endl;
 			system("pause");
 		}
-		else if (g != a[i].num)
-			y++;
+		else {
+			cout << "            " << "SORRY ,YOUR INPUT IS NOT VALID...." << endl;
+			system("pause");
+		}
+
 	}
-	if (y ==h)
+	else
 	{
-		cout << "             " << "SORRY SOMETHING WENT WRONG,PLEASE TRY AGAIN...." << endl;
+		cout << "            " << " YOUR ACCOUNT IS NOT CREATED YET,PLEASE CREATE ONE...." << endl;
 		system("pause");
 	}
 }
-void balance_enquiry(account a[],int h)
+void balance_enquiry(account a[], int h)
 {
 	int g;
 	int y = 0;
 	cout << "ENTER YOUR ACCOUNT NO. : ";
 	cin >> g;
-	for (int i = 0; i < h; i++)
-	{
-		if (g == a[i].num)
+	int c = choose(a, h, g);
+		if (c>=0)
 		{
 			cout << endl << "       " << "YOUR ACCOUNT DETAILS" << endl;
 			cout << "     " << "-----------------------------------" << endl << "     " << "-----------------------------------" << endl;
 			cout << "     " << "AC.NO" << "          " << "AC.NAME" << "          " << "AC.TYPE" << "          " << "AC.MONEY" << endl;
 			cout << "     " << "-----------------------------------" << endl << "     " << "-----------------------------------" << endl;
-			cout << "     " << a[i].num << "          " << a[i].name << "                      " << a[i].type << "                  " << a[i].initialamount << endl;
+			cout << "     " << a[c].num << "          " << a[c].name << "                      " << a[c].type << "                  " << a[c].initialamount << endl;
 			cout << "          " << "THANKS FOR YOUR USING" << endl;
 			system("pause");
 		}
-		else if (g != a[i].num)
-			y++;
-	}
-	if (y ==h)
-	{
-		cout << "             " << "SORRY SOMETHING WENT WRONG,PLEASE TRY AGAIN...." << endl;
-		system("pause");
-	}
+		else
+		{
+			cout << "            " << " YOUR ACCOUNT IS NOT CREATED YET,PLEASE CREATE ONE...." << endl;
+			system("pause");
+		}
 }
-void all_accounts(account a[],int x)
+void all_accounts(account a[], int x)
 {
 	cout << endl << "                               " << "ACCOUNTS DETAILS" << endl;
 	cout << "     " << "=======================================================================" << endl;
@@ -127,15 +176,13 @@ void all_accounts(account a[],int x)
 }
 void delete_account(account a[], int &v) {
 	int k;
-	int y = 0;
 	cout << "ENTER YOUR ACCOUNT NO. :";
 	cin >> k;
-	for (int i = 0; i < v; i++)
-	{
-		if (k == a[i].num)
+	int c = choose(a, v, k);
+		if (c>=0)
 
 		{
-			for (int j = i; j < v; j++)
+			for (int j = c; j < v; j++)
 			{
 				a[j] = a[j + 1];
 			}
@@ -143,31 +190,28 @@ void delete_account(account a[], int &v) {
 			cout << "           " << "YOUR ACCOUNT DELETED..." << endl;
 			system("pause");
 		}
-		else if (k != a[i].num)
-			y++;
-	}
-	if (y==v||y>v)
-	{
-		cout << "             " << "SORRY SOMETHING WENT WRONG,PLEASE TRY AGAIN...." << endl;
-		system("pause");
-	}
+		else
+		{
+			cout << "            " << " YOUR ACCOUNT IS NOT CREATED YET YO DELETE...." << endl;
+			system("pause");
+		}
+	
 }
-void modify_account(account a[],int h)
+void modify_account(account a[], int h)
 {
 	int k;
 	int y = 0;
 	cout << "ENTER YOUR ACCOUNT NO. :";
 	cin >> k;
-	for (int i = 0; i < h; i++)
-	{
-		if (k == a[i].num)
+	int c = choose(a, h, k);
+		if (c>=0)
 		{
 			cout << "     " << "-----------------------------------" << endl << "     " << "-----------------------------------" << endl;
 			cout << "     " << "AC.NO" << "          " << "AC.NAME" << "          " << "AC.TYPE" << "          " << "AC.MONEY" << endl;
 			cout << "     " << "-----------------------------------" << endl << "     " << "-----------------------------------" << endl;
-			cout << "     " << a[i].num << "          " << a[i].name << "                      " << a[i].type << "                  " << a[i].initialamount << endl << "\n";
+			cout << "     " << a[c].num << "          " << a[c].name << "                      " << a[c].type << "                  " << a[c].initialamount << endl << "\n";
 			cout << "          " << "MODIFY WHAT YOU WANT :" << endl << "\n";
-			cout << endl << " YOUR ACCOUNT NO. :" << a[i].num << endl << "\n";
+			cout << endl << " YOUR ACCOUNT NO. :" << a[c].num << endl << "\n";
 			string r;
 			cout << " MODIFY YOUR ACCOUNT NAME :";
 			getline(cin, r);
@@ -178,65 +222,57 @@ void modify_account(account a[],int h)
 			double w;
 			cout << endl << "\n" << " MODIFY YOUR ACCOUNT INITIALAMOUNT :";
 			cin >> w;
-			for (int i = 0; i < h; i++)
-			{
-				if (k == a[i].num)
-				{
-					a[i].name = r;
-					a[i].type = t;
-					a[i].initialamount = w;
-				}
-			}
+					a[c].name = r;
+					a[c].type = t;
+					a[c].initialamount = w;
 			cout << endl << "            " << "YOUR ACCOUNT MODYFIED..." << endl;
 			system("pause");
 		}
-		else if (k != a[i].num)
-			y++;
-	}
-	if (y==h)
-	{
-		cout << "             " << "SORRY SOMETHING WENT WRONG,PLEASE TRY AGAIN...." << endl;
-		system("pause");
-	}
+		else
+		{
+			cout << "            " << " THERE IS NO ACCOUNT TO MODIFY ,PLEASE CREATE ONE...." << endl;
+			system("pause");
+		}
+	
 }
 int main()
-	{
-		account s[1000];
-		int ch;
-		int counter = 0;
-		do {
-			system("cls");
-			cout << "  " << "MAIN MINUE" << endl;
-			cout << "  " << "01. NEW ACCOUNT" << endl;
-			cout << "  " << "02. DEPOSIT AMOUNT" << endl;
-			cout << "  " << "03. WITHDRAW AMOUNT" << endl;
-			cout << "  " << "04. BALANCE ENQUIRY" << endl;
-			cout << "  " << "05. ALL ACCOUNT HOLDER LIST" << endl;
-			cout << "  " << "06. CLOSE AN ACCOUNT" << endl;
-			cout << "  " << "07. MODIFY ACCOUNT" << endl;
-			cout << "  " << "08. EXIT" << endl;
-			cout << "  " << "SELSCT YOUR OPTION (1-8) : ";
-			cin >> ch;
-			system("cls");
-			switch(ch)
-			{
-			case 1:new_account(s);
-				counter++;
-				break;
-			case 2:deposit_amount(s,counter);
-				break;
-			case 3:withdraw_amount(s,counter);
-				break;
-			case 4:balance_enquiry(s,counter);
-				break;
-			case 5:all_accounts(s, counter);
-				break;
-			case 6:delete_account(s,counter);
-				break;
-			case 7:modify_account(s,counter);
-				break;
-			}
+{
+	account s[1000];
+	int ch;
+	int counter = 0;
+	do {
+		system("cls");
+		cout << "  " << "MAIN MINUE" << endl;
+		cout << "  " << "01. NEW ACCOUNT" << endl;
+		cout << "  " << "02. DEPOSIT AMOUNT" << endl;
+		cout << "  " << "03. WITHDRAW AMOUNT" << endl;
+		cout << "  " << "04. BALANCE ENQUIRY" << endl;
+		cout << "  " << "05. ALL ACCOUNT HOLDER LIST" << endl;
+		cout << "  " << "06. CLOSE AN ACCOUNT" << endl;
+		cout << "  " << "07. MODIFY ACCOUNT" << endl;
+		cout << "  " << "08. EXIT" << endl;
+		cout << "  " << "SELSCT YOUR OPTION (1-8) : ";
+		cin >> ch;
+		system("cls");
+		switch (ch)
+		{
+		case 1:counter++;
+			new_account(s,counter);
+			break;
+		case 2:deposit_amount(s, counter);
+			break;
+		case 3:withdraw_amount(s, counter);
+			break;
+		case 4:balance_enquiry(s, counter);
+			break;
+		case 5:all_accounts(s, counter);
+			break;
+		case 6:delete_account(s, counter);
+			break;
+		case 7:modify_account(s, counter);
+			break;
+		}
 
-		} while (ch!=8);
-			return 0;
-	}
+	} while (ch != 8);
+	return 0;
+}
