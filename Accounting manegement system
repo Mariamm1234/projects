@@ -72,7 +72,6 @@ void new_account(account a[],int u) {
 void deposit_amount(account a[], int h)
 {
 	int g;
-	int y = 0;
 	cout << "ENTER YOUR ACCOUNT NO. : ";
 	cin >> g;
 	int c = choose(a, h, g);
@@ -106,7 +105,6 @@ void deposit_amount(account a[], int h)
 void withdraw_amount(account a[], int h)
 {
 	int g;
-	int y = 0;
 	cout << "ENTER YOUR ACCOUNT NO. : ";
 	cin >> g;
 	int c = choose(a, h, g);
@@ -140,7 +138,6 @@ void withdraw_amount(account a[], int h)
 void balance_enquiry(account a[], int h)
 {
 	int g;
-	int y = 0;
 	cout << "ENTER YOUR ACCOUNT NO. : ";
 	cin >> g;
 	int c = choose(a, h, g);
@@ -200,7 +197,6 @@ void delete_account(account a[], int &v) {
 void modify_account(account a[], int h)
 {
 	int k;
-	int y = 0;
 	cout << "ENTER YOUR ACCOUNT NO. :";
 	cin >> k;
 	int c = choose(a, h, k);
